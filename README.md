@@ -57,7 +57,27 @@ The server will start on `http://localhost:8080`
 go test -v ./...
 ```
 
+### Building the Application
+
+```bash
+go build -v ./...
+```
+
+### Running the Application
+
+```bash
+go run main.go
+```
+
 ### Linting
+
+First, install golangci-lint if you haven't already:
+
+```bash
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+```
+
+Then run the linter:
 
 ```bash
 golangci-lint run

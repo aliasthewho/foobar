@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -11,6 +12,7 @@ import (
 	"foobar/config"
 	"foobar/internal/handlers"
 	"foobar/pkg/logger"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -28,7 +30,10 @@ func main() {
 	if err := logger.Initialize(logLevel); err != nil {
 		panic("failed to initialize logger: " + err.Error())
 	}
-	defer logger.Sync()
+
+	if err := logger.Sync(); err != nil {
+		log.Printf("Failed to sync logger: %v", err)
+	}
 
 	// Log a sample message
 	logger.Logger.Info("Application starting",
